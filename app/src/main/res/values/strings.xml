@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Face Recognition</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">The devise is Disconnected</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="relationship">Relationship</string>
+    <string name="city">City</string>
+    <string name="phone">Phone</string>
+    <string name="add_new_person">Add new Person</string>
+    <string name="save">Save</string>
+    <string name="phone_layout">9665xxxxxxxx</string>
+
+    <!--    <string name="disconnected">The devise is Disconnected</string>-->
+</resources>

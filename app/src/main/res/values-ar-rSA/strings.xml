@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Face Recognition</string>
+    <string name="connected">متصل</string>
+    <string name="disconnected">الجهاز غير متصل</string>
+    <string name="name">الاسم</string>
+    <string name="age">العمر</string>
+    <string name="relationship">صلة القرابة</string>
+    <string name="city">المدينة</string>
+    <string name="phone">الجوال</string>
+    <string name="add_new_person">إضافة شخص جديد</string>
+    <string name="save">حفظ</string>
+    <string name="phone_layout">9665xxxxxxxx</string>
+</resources>
