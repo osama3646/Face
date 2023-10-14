@@ -1,34 +1,22 @@
 package com.example.facerecognition
 
-import android.annotation.SuppressLint
-import androidx.compose.foundation.background
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,7 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import kotlinx.coroutines.launch
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 @Preview
 @Composable
@@ -108,7 +97,30 @@ fun AddPerson(onDismiss: () -> Unit){
                         }
                     },
                     actions = {
-                        TextButton(onClick = {/*todo*/}) {
+                        TextButton(onClick = {
+                            nameBol = personName.isEmpty()
+                            ageBol = personAge.isEmpty() || personAge.length > 2 /* TODO */
+                            relationshipBol = personRelationship.isEmpty()
+                            cityBol = personCity.isEmpty()
+                            phoneBol = personPhone.isEmpty() || personPhone.length < 12
+                            if (!nameBol && !ageBol && !relationshipBol && !cityBol && !phoneBol){
+                                val db = Firebase.firestore
+                                val person = hashMapOf(
+                                    "name" to personName,
+                                    "age" to personAge,
+                                    "relationship" to personRelationship,
+                                    "city" to personCity,
+                                    "phone" to personPhone
+                                )
+                                db.collection("Person").add(person).addOnSuccessListener { documentReference ->
+                                    Log.w(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                                }
+                                    .addOnFailureListener { e ->
+                                        Log.w(TAG, "Error adding document", e)
+                                    }
+                                onDismiss()
+                        }
+                        }) {
                             Text(text = stringResource(id = R.string.save), color = colorResource(id = R.color.primary))
                         }
                     }

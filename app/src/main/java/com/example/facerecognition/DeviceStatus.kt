@@ -54,7 +54,7 @@ fun deviceStatus(batteryLev: Float, connectStu: Boolean){
             ){
                 val strokeWidth = 18.dp.toPx()
                 drawArc(
-                    color = Color(android.graphics.Color.parseColor("#ff5a5a")),
+                    color = Color(com.example.facerecognition.ui.theme.primary.value),
                     -90f,
                     360f * batteryLev,
                     false,
@@ -72,7 +72,7 @@ fun deviceStatus(batteryLev: Float, connectStu: Boolean){
                 val b = sin(beta) * r
 
                 drawCircle(
-                    color = Color(android.graphics.Color.parseColor("#ff5a5a")),
+                    color = Color(com.example.facerecognition.ui.theme.primary.value),
                     radius = 35f,
                     center = Offset(center.x + a, center.y + b )
                 )
@@ -90,7 +90,7 @@ fun deviceStatus(batteryLev: Float, connectStu: Boolean){
                     .size(220.dp)
             ){
                 drawCircle(
-                    color = Color(android.graphics.Color.parseColor("#ff5a5a")),
+                    color = Color(com.example.facerecognition.ui.theme.primary.value),
                     radius = 103.dp.toPx(),
                     center = Offset(size.width / 2, size.height / 2)
                 )
@@ -108,7 +108,7 @@ fun deviceStatus(batteryLev: Float, connectStu: Boolean){
                     .padding(20.dp)
             ){
                 drawCircle(
-                    color = Color(android.graphics.Color.parseColor("#ff5a5a")),
+                    color = Color(com.example.facerecognition.ui.theme.primary.value),
                     radius = 242f
                 )
                 drawCircle(
@@ -122,7 +122,7 @@ fun deviceStatus(batteryLev: Float, connectStu: Boolean){
                     .size(220.dp)
             ){
                 drawCircle(
-                    color = Color(android.graphics.Color.parseColor("#333333")),
+                    color = Color(com.example.facerecognition.ui.theme.bg_color.value),
                     radius = 103.dp.toPx(),
                     center = Offset(size.width / 2, size.height / 2)
                 )
